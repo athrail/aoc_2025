@@ -9,8 +9,6 @@ def get_bank_max_joltage(bank: str) -> int:
     print(indexes)
 
     indexes.append(0)
-    for i, d in enumerate(digits[1:])
-
 
     value = "".join([str(digits[i]) for i in indexes])
     print(f"{value}")
@@ -39,11 +37,11 @@ def test_day3():
     assert 3121910778619 == sum_joltage(split_banks)
 
 
-def main():
+def solution() -> int:
     with open("./input_day3.txt", "r") as f:
         banks = f.readlines()
 
-    print(f"Total joltage is {sum_joltage(banks)}")
+    return sum_joltage(banks)
 
 
-test_day3()
+solution()

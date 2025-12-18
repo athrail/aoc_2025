@@ -2,6 +2,7 @@
 
 # Safe password
 # We're getting dial instructions from input file and need to count how many times we hit 0 after any rotation
+# Additionally need to count every click that happens on 0
 
 
 class Dial:
@@ -13,34 +14,39 @@ class Dial:
         direction = instruction[0]
         amount = int(instruction[1:])
 
-        print(f"Rotating {direction} by {amount}")
-        print(f"Position before {self.position}")
-        self.position += (amount % 100) * (-1 if direction == "L" else 1)
-        print(f"Position after {self.position}")
+        self.password += amount // 100
+        amount = amount % 100
+
+        old_position = self.position
+        self.position += amount * (-1 if direction == "L" else 1)
+
+        if old_position != 0 and (self.position < 0 or self.position > 100):
+            self.password += 1
+
         self.position = (
             self.position + 100 if self.position < 0 else self.position % 100
         )
-        print(f"Position after2 {self.position}")
 
         if self.position == 0:
             self.password += 1
 
 
-def main():
+def solution() -> int:
     dial = Dial()
     with open("./input_1.txt", "r") as f:
-        for i, line in enumerate(f.readlines()):
+        for line in f.readlines():
             dial.rotate(line.strip())
 
-    print(f"Safe password is {dial.password}")
+    return dial.password
 
 
-main()
+solution()
 
 
 def test_dial():
     dial = Dial()
     assert dial.position == 50
+    assert dial.password == 0
 
     dial.rotate("R1")
     assert dial.position == 51
@@ -50,35 +56,24 @@ def test_dial():
 
     dial.rotate("R50")
     assert dial.position == 0
+    assert dial.password == 1
 
     dial.rotate("L50")
     assert dial.position == 50
+    assert dial.password == 1
 
     dial.rotate("L50")
     assert dial.position == 0
+    assert dial.password == 2
 
     dial.rotate("L1")
     assert dial.position == 99
+    assert dial.password == 2
 
 
-def test_dial_aoc():
+def test_dial_clicks():
     dial = Dial()
-
-    actions = [
-        ("L68", 82),
-        ("L30", 52),
-        ("R48", 0),
-        ("L5", 95),
-        ("R60", 55),
-        ("L55", 0),
-        ("L1", 99),
-        ("L99", 0),
-        ("R14", 14),
-        ("L82", 32),
-    ]
-
-    for action in actions:
-        dial.rotate(action[0])
-        assert dial.position == action[1]
-
-    assert dial.password == 3
+    assert dial.position == 50
+    dial.rotate("R1000")
+    assert dial.position == 50
+    assert dial.password == 10

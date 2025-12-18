@@ -37,11 +37,11 @@ def test_day3():
     assert 357 == sum_joltage(split_banks)
 
 
-def main():
+def solution() -> int:
     with open("./input_day3.txt", "r") as f:
         banks = f.readlines()
 
-    print(f"Total joltage is {sum_joltage(banks)}")
+    return sum_joltage(banks)
 
 
-main()
+solution()
