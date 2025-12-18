@@ -37,12 +37,12 @@ def count_movable_rolls(table: list[list[str]]) -> int:
     return movable
 
 
-def solution():
+def solution() -> int:
     with open("./input_day4.txt", "r") as f:
         input = f.read()
 
         table = [[c for c in line] for line in input.strip().splitlines()]
-        print(f"Total movable rolls = {count_movable_rolls(table)}")
+        return count_movable_rolls(table)
 
 
 def test_day4():
