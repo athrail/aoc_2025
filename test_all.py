@@ -28,10 +28,12 @@ def test_day3_p1():
     assert solution() == 16993
 
 
+# Not finished
 def test_day3_p2():
-    from day3_part2 import solution
-
-    assert solution() == 79183223243
+    # from day3_part2 import solution
+    #
+    # assert solution() == 79183223243
+    assert False
 
 
 def test_day4_p1():
