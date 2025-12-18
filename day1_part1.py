@@ -28,7 +28,7 @@ class Dial:
 
 def solution() -> int:
     dial = Dial()
-    with open("./input_1.txt", "r") as f:
+    with open("./input_day1.txt", "r") as f:
         for i, line in enumerate(f.readlines()):
             dial.rotate(line.strip())
 
