@@ -46,3 +46,15 @@ def test_day4_p2():
     from day4_part2 import solution
 
     assert solution() == 8442
+
+
+def test_day5_p1():
+    from day5_part1 import solution
+
+    assert solution() == 509
+
+
+def test_day5_p2():
+    from day5_part2 import solution
+
+    assert solution() == 336790092076620
