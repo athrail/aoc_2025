@@ -64,3 +64,9 @@ def test_day6_p1():
     from day6_part1 import solution
 
     assert solution() == 4449991244405
+
+
+def test_day6_p2():
+    from day6_part2 import solution
+
+    assert solution() == 9348430857627
